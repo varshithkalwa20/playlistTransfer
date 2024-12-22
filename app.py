@@ -4,6 +4,7 @@ from google.oauth2.credentials import Credentials
 from flask_cors import CORS
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -12,6 +13,10 @@ CORS(app)  # Enable CORS for all routes
 SPOTIFY_CLIENT_ID = "2d4c852b97b747189bd2dd55d1a0e9e1"
 SPOTIFY_CLIENT_SECRET = "a96f2b9eca80445cbc7c7281df9dcf78"
 SPOTIFY_REDIRECT_URI = "https://varshithkalwa20.github.io/playlistTransfer/callback"
+
+@app.route('/')
+def home():
+    return jsonify({"message": "API is up and running!"})
 
 @app.route('/transfer', methods=['POST'])
 def transfer_playlist():
@@ -78,7 +83,5 @@ def transfer_playlist():
 
 
 if __name__ == '__main__':
-    
-    app.run(debug=True, host="0.0.0.0", port=5000)  # Use host 0.0.0.0 for external access
-
-    
+    port = int(os.environ.get('PORT', 5000))  # Render dynamically assigns port
+    app.run(debug=True, host="0.0.0.0", port=port)
