@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Playlist</title>
+</head>
+<body>
+    <h1>Your YouTube Playlists</h1>
+    <ul>
+        {% for playlist in playlists %}
+            <li>
+                {{ playlist.title }}
+                <button onclick="transferPlaylist('{{ playlist.id }}', '{{ playlist.title }}')">Transfer to Spotify</button>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        function transferPlaylist(playlistId, playlistName) {
+            fetch('/create_playlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ youtube_playlist_id: playlistId, playlist_name: playlistName })
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error(error));
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback</title>
+</head>
+<body>
+    <script>
+        const urlParams = new URLSearchParams(window.location.hash.substring(1));
+        const youtubeToken = urlParams.get("access_token");
+        const spotifyToken = urlParams.get("access_token");
+
+        if (youtubeToken) localStorage.setItem("youtube_token", youtubeToken);
+        if (spotifyToken) localStorage.setItem("spotify_token", spotifyToken);
+
+        window.location.href = "/"; // Redirect to the main page
+    </script>
+</body>
+</html>
