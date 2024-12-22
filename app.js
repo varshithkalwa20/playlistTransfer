@@ -41,7 +41,7 @@ document.getElementById("transfer-playlist").onclick = async function () {
         return;
     }
 
-    const response = await fetch("https://<your-backend-server-url>/transfer", {
+    const response = await fetch("https://https://playlisttransfer.onrender.com//transfer", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
