@@ -7,14 +7,22 @@
 </head>
 <body>
     <script>
+        // Use URLSearchParams to extract tokens from URL hash (after #)
         const urlParams = new URLSearchParams(window.location.hash.substring(1));
-        const youtubeToken = urlParams.get("access_token");
-        const spotifyToken = urlParams.get("access_token");
 
+        // Assuming YouTube token is passed as "access_token"
+        const youtubeToken = urlParams.get("access_token");
+        
+        // Spotify token might be passed differently, you may need to adjust this
+        // Usually, for Spotify, it's sent as 'code' in the URL
+        const spotifyToken = urlParams.get("code");
+
+        // Store the tokens in localStorage
         if (youtubeToken) localStorage.setItem("youtube_token", youtubeToken);
         if (spotifyToken) localStorage.setItem("spotify_token", spotifyToken);
 
-        window.location.href = "/"; // Redirect to the main page
+        // Redirect back to the main page (or a page to use these tokens)
+        window.location.href = "/"; 
     </script>
 </body>
 </html>
