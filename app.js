@@ -3,7 +3,7 @@ const SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize";
 
 const YOUTUBE_CLIENT_ID = "142927213626-u15lulmiu22o5ho7dqoti7tolh98002q.apps.googleusercontent.com";
 const SPOTIFY_CLIENT_ID = "2d4c852b97b747189bd2dd55d1a0e9e1";
-const REDIRECT_URI = "https://varshithkalwa20.github.io/playlistTransfer/callback"; // Replace with your GitHub Pages URL
+const REDIRECT_URI = "https://varshithkalwa20.github.io/playlistTransfer/callback.html"; // Replace with your GitHub Pages URL
 
 // YouTube Login
 document.getElementById("login-youtube").onclick = function () {
