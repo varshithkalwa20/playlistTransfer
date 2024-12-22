@@ -19,15 +19,13 @@ document.getElementById("login-spotify").onclick = function () {
 
 // Save tokens after redirect
 window.onload = function () {
-    // Get YouTube token from URL after successful OAuth
     const urlParams = new URLSearchParams(window.location.hash.substr(1));
     const youtubeToken = urlParams.get("access_token");
+    const spotifyToken = urlParams.get("access_token");
+
     if (youtubeToken) {
         localStorage.setItem("youtube_token", youtubeToken);
     }
-
-    // Get Spotify token from URL after successful OAuth
-    const spotifyToken = urlParams.get("access_token");
     if (spotifyToken) {
         localStorage.setItem("spotify_token", spotifyToken);
     }
