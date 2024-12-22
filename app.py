@@ -12,7 +12,7 @@ CORS(app)  # Enable CORS for all routes
 # Replace these with your actual credentials
 SPOTIFY_CLIENT_ID = "2d4c852b97b747189bd2dd55d1a0e9e1"
 SPOTIFY_CLIENT_SECRET = "a96f2b9eca80445cbc7c7281df9dcf78"
-SPOTIFY_REDIRECT_URI = "https://varshithkalwa20.github.io/playlistTransfer/callback"
+SPOTIFY_REDIRECT_URI = "https://varshithkalwa20.github.io/playlistTransfer/callback.html"
 
 @app.route('/')
 def home():
