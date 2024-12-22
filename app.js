@@ -1,10 +1,9 @@
 const YOUTUBE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth";
 const SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize";
 
-const YOUTUBE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID";
-const SPOTIFY_CLIENT_ID = "YOUR_SPOTIFY_CLIENT_ID";
-
-const REDIRECT_URI = "https://<your-username>.github.io/callback"; // Replace with your GitHub Pages URL
+const YOUTUBE_CLIENT_ID = "142927213626-u15lulmiu22o5ho7dqoti7tolh98002q.apps.googleusercontent.com";
+const SPOTIFY_CLIENT_ID = "2d4c852b97b747189bd2dd55d1a0e9e1";
+const REDIRECT_URI = "https://varshithkalwa20.github.io/playlistTransfer/callback"; // Replace with your GitHub Pages URL
 
 // YouTube Login
 document.getElementById("login-youtube").onclick = function () {
@@ -18,6 +17,22 @@ document.getElementById("login-spotify").onclick = function () {
     window.location.href = spotifyAuthUrl;
 };
 
+// Save tokens after redirect
+window.onload = function () {
+    // Get YouTube token from URL after successful OAuth
+    const urlParams = new URLSearchParams(window.location.hash.substr(1));
+    const youtubeToken = urlParams.get("access_token");
+    if (youtubeToken) {
+        localStorage.setItem("youtube_token", youtubeToken);
+    }
+
+    // Get Spotify token from URL after successful OAuth
+    const spotifyToken = urlParams.get("access_token");
+    if (spotifyToken) {
+        localStorage.setItem("spotify_token", spotifyToken);
+    }
+};
+
 // Transfer Playlist
 document.getElementById("transfer-playlist").onclick = async function () {
     const youtubeToken = localStorage.getItem("youtube_token");
@@ -28,7 +43,7 @@ document.getElementById("transfer-playlist").onclick = async function () {
         return;
     }
 
-    const response = await fetch("https://your-backend-server.com/transfer", {
+    const response = await fetch("https://<your-backend-server-url>/transfer", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
